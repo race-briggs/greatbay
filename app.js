@@ -3,7 +3,7 @@ require('dotenv').config();
 var keys = require('./keys.js');
 var mysql = require('mysql');
 var inquirer = require('inquirer');
-var passwerd = new Password(keys.key)
+var passwerd = keys.key
 
 var connection = mysql.createConnection({
   host: 'localhost',
@@ -28,10 +28,12 @@ inquirer.prompt(
   },
   {
     type: 'input',
-    message: 'What category would you like to place your auction in?'
-
+    message: 'What category would you like to place your auction in?',
+    name: 'fuku'
   }
-)
+).then(function(response){
+  console.log(response);
+})
 
 function createBid(){
   console.log('Starting bid for new item...\n');
